@@ -154,34 +154,53 @@ void excluirElemento()
 	int excluir;
 	NO* atual = primeiro;
 	NO* anterior = NULL;
-	
-	cout << "Digite o valor que quer excluir:" << endl;
+
+	cout << "Digite o numero que voce quer excluir: " << endl;
 	cin >> excluir;
 	NO* pos = posicaoElemento(excluir);
 
-	if (pos == NULL)
-	{
-		cout << "numero nao existe";
+	
+	if (pos == NULL) {
+
+		cout << "Numero nao existe";
+
 	}
 
-	while(atual-> valor != excluir)
+	else
 	{
-		anterior = atual;
-		atual = atual->prox;
+		if (primeiro == NULL) {
 
-		if(atual->valor == excluir && anterior == NULL)
-		{
-			primeiro = atual -> prox;
+			cout << "A lista esta vazia" << endl;
+			return;
 		}
-		else if(atual-> valor == excluir)
-		{
-			NO* aux = atual;
+
+		else {
+
+			atual = primeiro;
+			primeiro = primeiro->prox;
+			free(atual);
+		}
+
+		while (atual != pos && atual != NULL) {
+
+			anterior = atual;
+			atual = atual->prox;
+
+		}
+
+		if (atual != NULL) {
+
 			anterior->prox = atual->prox;
-			free(aux);
+			free(atual);
+			cout << "O elemento foi excluido com sucesso!" << endl;
 
-			cout << "numero excluido";
 		}
+
 	}
+
+
+
+	
 }
 
 void buscarElemento()
